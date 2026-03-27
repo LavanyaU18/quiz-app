@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                bat '''
+                    python -m venv venv
+                    call venv\\Scripts\\activate
+                    python -m pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                bat '''
+                    call venv\\Scripts\\activate
+                    pytest -q
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build passed. Tests are successful.'
+        }
+        failure {
+            echo 'Build failed. Check console output.'
+        }
+    }
+}
