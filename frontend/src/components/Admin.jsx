@@ -23,7 +23,7 @@ export default function Admin() {
 
   const fetchLeaderboard = async () => {
     try {
-      const { data } = await axios.get('http://104.214.180.228:5000/api/quiz/leaderboard');
+      const { data } = await axios.get('/api/quiz/leaderboard');
       setLeaderboard(data);
     } catch (error) {
       console.error(error);
@@ -32,7 +32,7 @@ export default function Admin() {
 
   const fetchQuestions = async () => {
     try {
-      const { data } = await axios.get('http://104.214.180.228:5000/api/quiz/questions');
+      const { data } = await axios.get('/api/quiz/questions');
       setQuestions(data);
     } catch (error) {
       console.error(error);
@@ -48,7 +48,7 @@ export default function Admin() {
   const handleAddQuestion = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://104.214.180.228:5000/api/quiz/questions', {
+      await axios.post('/api/quiz/questions', {
         text: newQText, options, category, difficulty
       }, {
         headers: { Authorization: `Bearer ${user.token}` }
@@ -68,7 +68,7 @@ export default function Admin() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://104.214.180.228:5000/api/quiz/questions/${id}`, {
+      await axios.delete(`/api/quiz/questions/${id}`, {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       fetchQuestions();
@@ -79,7 +79,7 @@ export default function Admin() {
 
   const handleDeleteAttempt = async (id) => {
     try {
-      await axios.delete(`http://104.214.180.228:5000/api/quiz/attempts/${id}`, {
+      await axios.delete(`/api/quiz/attempts/${id}`, {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       fetchLeaderboard();

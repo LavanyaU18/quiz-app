@@ -14,7 +14,7 @@ export default function Quiz() {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const { data } = await axios.get('http://104.214.180.228:5000/api/quiz/questions');
+        const { data } = await axios.get('/api/quiz/questions');
         setQuestions(data);
         setLoading(false);
       } catch (error) {
@@ -39,7 +39,7 @@ export default function Quiz() {
 
   const submitScore = async (finalScore, total) => {
     try {
-      await axios.post('http://104.214.180.228:5000/api/quiz/attempts', 
+      await axios.post('/api/quiz/attempts', 
         { score: finalScore, totalQuestions: total },
         { headers: { Authorization: `Bearer ${user.token}` } }
       );
