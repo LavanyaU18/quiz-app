@@ -9,4 +9,4 @@ RUN npm install
 COPY . .
 
 # Explicitly start the application since there's no start script in package.json
-CMD ["node", "index.js"]
+CMD ["node", "server.js"]
