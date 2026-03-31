@@ -13,7 +13,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const { data } = await axios.post('http://104.214.180.228:5000/api/auth/login', { email, password });
       login(data);
       navigate('/');
     } catch (err) {

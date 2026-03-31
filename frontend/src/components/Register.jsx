@@ -14,7 +14,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('http://localhost:5000/api/auth/register', { name, email, password });
+      const { data } = await axios.post('http://104.214.180.228:5000/api/auth/register', { name, email, password });
       login(data);
       navigate('/');
     } catch (err) {
