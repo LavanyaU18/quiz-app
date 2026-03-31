@@ -3,7 +3,7 @@ version: '3.8'
 services:
   mongodb:
     image: mongo:latest
-    container_name: quiz_mongodb
+
     ports:
       - "27017:27017"
     volumes:
@@ -12,7 +12,7 @@ services:
 
   backend:
     build: ./backend
-    container_name: quiz_backend
+
     ports:
       - "5000:5000"
     environment:
@@ -26,7 +26,7 @@ services:
 
   frontend:
     build: ./frontend
-    container_name: quiz_frontend
+
     ports:
       - "80:80"
     depends_on:
