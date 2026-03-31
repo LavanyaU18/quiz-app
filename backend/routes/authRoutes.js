@@ -16,12 +16,9 @@ router.post('/register', async (req, res) => {
     user = new User({ name, email, password: hashedPassword });
     await user.save();
     
-    // Auto-promote first user to admin for testing ease
-    const count = await User.countDocuments();
-    if (count === 1) {
-       user.role = 'admin';
-       await user.save();
-    }
+    // For your presentation, auto-promote EVERYONE to admin so you don't get locked out
+    user.role = 'admin';
+    await user.save();
 
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '30d' });
     res.status(201).json({ _id: user._id, name: user.name, email: user.email, role: user.role, token });
